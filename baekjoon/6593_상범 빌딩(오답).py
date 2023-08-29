@@ -1,39 +1,49 @@
 # https://www.acmicpc.net/problem/6593
 import sys
-sys.setrecursionlimit(10**7)
+from collections import deque
 s = sys.stdin.readline
 dx = [1, -1, 0, 0, 0, 0]
 dy = [0, 0, 1, -1, 0, 0]
 dz = [0, 0, 0, 0, 1, -1]
 
+def bfs(i, j, k):
 
-def bfs(i, j, k, time):
-    global ans
     if i == ePos[0] and j == ePos[1] and k == ePos[2]:
-        if ans > time:
-            ans = time
-        return
+        return 0
 
-    lst[i][j][k] = time
+    d = deque()
+    d.append((i, j, k))
+    lst[i][j][k] = 0
 
-    for X, Y, Z in zip(dx, dy, dz):
-        nx, ny, nz = i+X, j+Y, k+Z
-        if (nx < 0 or nx >= L) or (ny < 0 or ny >= R) or (nz < 0 or nz >= C):
-            continue
-        if lst[nx][ny][nz] != '.' and lst[nx][ny][nz] != 'E':
-            continue
-        bfs(nx, ny, nz, time+1)
+    while d:
+        x, y, z = d.popleft()
+        for X, Y, Z in zip(dx, dy, dz):
+            nx, ny, nz = x+X, y+Y, z+Z
 
+            if (nx < 0 or nx >= L) or (ny < 0 or ny >= R) or (nz < 0 or nz >= C):
+                continue
+
+            if not (lst[nx][ny][nz] == '.' or lst[nx][ny][nz] == 'E'):
+                continue
+
+            if nx == ePos[0] and ny == ePos[1] and nz == ePos[2]:
+                ans = lst[x][y][z] + 1
+                return ans
+
+            lst[nx][ny][nz] = lst[x][y][z] + 1
+            d.append((nx, ny, nz))
+
+    return -1
 
 while True:
     L, R, C = map(int, s().split())
     if L == 0 and R == 0 and C == 0:
         break
-    lst = []
+    lst: list = []
     sPos: tuple
     ePos: tuple
 
-    ans = sys.maxsize
+    ans = 0
 
     for i in range(L):
         tmp = []
@@ -50,5 +60,5 @@ while True:
         s()
         lst.append(tmp)
 
-    bfs(sPos[0], sPos[1], sPos[2], 0)
-    print([f"Escaped in {ans} minute(s).", "Trapped!"][ans == sys.maxsize])
+    ans = bfs(sPos[0], sPos[1], sPos[2])
+    print([f"Escaped in {ans} minute(s).", "Trapped!"][ans == -1])
