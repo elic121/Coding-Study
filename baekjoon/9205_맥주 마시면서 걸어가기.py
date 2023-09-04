@@ -1,12 +1,13 @@
 # https://www.acmicpc.net/problem/9205
 import sys
 from collections import deque
+
 s = sys.stdin.readline
 test_N = int(s())
 
 
 def dis(s: tuple, d: tuple):
-    return abs(d[0]-s[0])+abs(d[1]-s[1])
+    return abs(d[0] - s[0]) + abs(d[1] - s[1])
 
 
 def bfs(N, st_x, st_y, de_x, de_y, con_list):

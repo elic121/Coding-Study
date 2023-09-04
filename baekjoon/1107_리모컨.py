@@ -1,5 +1,6 @@
 # https://www.acmicpc.net/problem/1107
 from sys import stdin
+
 s = stdin.readline
 n = int(s())
 N = int(s())
@@ -8,7 +9,8 @@ if N:
 else:
     I = []
 
-only_updown = abs(n-100)
+only_updown = abs(n - 100)
+
 
 def sub_sol():
     global only_updown
@@ -20,7 +22,8 @@ def sub_sol():
                 C = False
                 break
         if C:
-            only_updown = min(only_updown, len(l) + abs(i-n))
+            only_updown = min(only_updown, len(l) + abs(i - n))
+
 
 sub_sol()
 print(only_updown)

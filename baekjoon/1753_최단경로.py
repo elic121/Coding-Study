@@ -4,18 +4,19 @@ from collections import defaultdict
 import heapq
 
 s = stdin.readline
-V, E = map(int,s().split())
+V, E = map(int, s().split())
 d = defaultdict(list)
 start = int(s())
 for _ in range(E):
-    u,v,w = map(int,s().split())
-    d[u].append((w,v))
+    u, v, w = map(int, s().split())
+    d[u].append((w, v))
 
-L = [float('inf') for _ in range(V+1)]
+L = [float("inf") for _ in range(V + 1)]
+
 
 def D(start):
     Q = []
-    heapq.heappush(Q,(0,start))
+    heapq.heappush(Q, (0, start))
     L[start] = 0
     while Q:
         dist, node = heapq.heappop(Q)
@@ -26,8 +27,9 @@ def D(start):
 
             if cost < L[val[1]]:
                 L[val[1]] = cost
-                heapq.heappush(Q,(cost,val[1]))
+                heapq.heappush(Q, (cost, val[1]))
+
 
 D(start)
 for i in L[1:]:
-    print(['INF',i][i!=float('inf')])
+    print(["INF", i][i != float("inf")])

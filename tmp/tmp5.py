@@ -1,5 +1,6 @@
 import sys
 from collections import defaultdict
+
 N = 3
 d = defaultdict(list)
 for _ in range(N):
@@ -17,7 +18,7 @@ def dfs(depth, start_node):
     a = max(depth, a)
     visited[start_node] = 1
     for i in d[start_node]:
-        dfs(depth+1, i)
+        dfs(depth + 1, i)
 
 
 dfs(0, 1)

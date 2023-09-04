@@ -1,12 +1,13 @@
 # 미로 탈출
 import sys
 from collections import deque
+
 s = sys.stdin.readline
 
-N, M = map(int,s().split())
+N, M = map(int, s().split())
 l = []
 for i in range(N):
-    l.append(list(map(int,s().strip())))
+    l.append(list(map(int, s().strip())))
 """
 N , M = 5, 6
 example = [
@@ -17,28 +18,30 @@ example = [
     [1,1,1,1,1,1]
 ]
 """
-dx = [0,1,0,-1]
-dy = [1,0,-1,0]
+dx = [0, 1, 0, -1]
+dy = [1, 0, -1, 0]
 
-def bfs(x,y):
+
+def bfs(x, y):
     q = deque()
-    q.append((x,y))
-    
+    q.append((x, y))
+
     while q:
         X, Y = q.popleft()
-        for Dx, Dy in zip(dx,dy):
-            nx, ny = X+Dx, Y+Dy
-            if nx<0 or nx>=N or ny<0 or ny>=M:
+        for Dx, Dy in zip(dx, dy):
+            nx, ny = X + Dx, Y + Dy
+            if nx < 0 or nx >= N or ny < 0 or ny >= M:
                 continue
             if l[nx][ny] == 0:
                 continue
             if l[nx][ny] == 1:
                 l[nx][ny] = l[X][Y] + 1
-                q.append((nx,ny)) 
-    
-    return l[N-1][M-1]
+                q.append((nx, ny))
 
-print(bfs(0,0))
+    return l[N - 1][M - 1]
+
+
+print(bfs(0, 0))
 
 """
 BFS를 통해서 해결

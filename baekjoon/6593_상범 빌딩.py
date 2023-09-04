@@ -1,13 +1,14 @@
 # https://www.acmicpc.net/problem/6593
 import sys
 from collections import deque
+
 s = sys.stdin.readline
 dx = [1, -1, 0, 0, 0, 0]
 dy = [0, 0, 1, -1, 0, 0]
 dz = [0, 0, 0, 0, 1, -1]
 
-def bfs(i, j, k):
 
+def bfs(i, j, k):
     if i == ePos[0] and j == ePos[1] and k == ePos[2]:
         return 0
 
@@ -18,12 +19,12 @@ def bfs(i, j, k):
     while d:
         x, y, z = d.popleft()
         for X, Y, Z in zip(dx, dy, dz):
-            nx, ny, nz = x+X, y+Y, z+Z
+            nx, ny, nz = x + X, y + Y, z + Z
 
             if (nx < 0 or nx >= L) or (ny < 0 or ny >= R) or (nz < 0 or nz >= C):
                 continue
 
-            if not (lst[nx][ny][nz] == '.' or lst[nx][ny][nz] == 'E'):
+            if not (lst[nx][ny][nz] == "." or lst[nx][ny][nz] == "E"):
                 continue
 
             if nx == ePos[0] and ny == ePos[1] and nz == ePos[2]:
@@ -34,6 +35,7 @@ def bfs(i, j, k):
             d.append((nx, ny, nz))
 
     return -1
+
 
 while True:
     L, R, C = map(int, s().split())
@@ -51,9 +53,9 @@ while True:
             l = list(s().strip())
             tmp2 = []
             for idx, k in enumerate(l):
-                if k == 'S':
+                if k == "S":
                     sPos = (i, j, idx)
-                if k == 'E':
+                if k == "E":
                     ePos = (i, j, idx)
                 tmp2.append(k)
             tmp.append(tmp2)

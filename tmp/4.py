@@ -1,2 +1,3 @@
 from sys import stdin
-s=stdin.readline
+
+s = stdin.readline

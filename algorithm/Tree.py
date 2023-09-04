@@ -33,18 +33,14 @@ class Tree:
                 ptrNode = ptrNode.left
             else:
                 ptrNode = ptrNode.right
-        
+
         # 2-1
         if node.value < tempNode.value:
             tempNode.left = node
         # 2-2
         else:
             tempNode.right = node
-    
-
-
 
 
 if __name__ == "__main__":
     tree = Tree()
-    

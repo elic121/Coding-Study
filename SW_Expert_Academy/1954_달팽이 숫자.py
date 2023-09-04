@@ -1,4 +1,5 @@
 import sys
+
 s = sys.stdin.readline
 N = int(s())
 
@@ -20,16 +21,16 @@ def snail(num):
     x, y = 0, 0
     val = 1
 
-    for _ in range(num*num):
+    for _ in range(num * num):
         arr[x][y] = val
 
         dx, dy = move(drc)
-        nx, ny = x+dx, y+dy
+        nx, ny = x + dx, y + dy
         if (nx < 0 or nx >= num) or (ny < 0 or ny >= num) or (arr[nx][ny] != 0):
             drc += 1
             drc %= 4
             dx, dy = move(drc)
-            x, y = x+dx, y+dy
+            x, y = x + dx, y + dy
         else:
             x, y = nx, ny
 

@@ -6,7 +6,6 @@
 # for q in a:print(*q)
 
 
-
 # R=range(int(input()))
 # a=[[*map(int,input()[::2])]for _ in R]
 # for i in R:

@@ -1,5 +1,6 @@
 # https://www.acmicpc.net/problem/4963
 import sys
+
 sys.setrecursionlimit(10**6)
 s = sys.stdin.readline
 dx = [1, 1, 0, -1, -1, -1, 0, 1]
@@ -12,7 +13,7 @@ def dfs(x, y, xSize, ySize):
     if arr[x][y] == 1:
         arr[x][y] = 0
         for X, Y in zip(dx, dy):
-            nx, ny = x+X, y+Y
+            nx, ny = x + X, y + Y
             dfs(nx, ny, xSize, ySize)
         return True
     return False
@@ -20,7 +21,6 @@ def dfs(x, y, xSize, ySize):
 
 c = []
 while True:
-
     xSize, ySize = map(int, s().split())
     if not (xSize and ySize):
         break
@@ -36,4 +36,4 @@ while True:
                 cnt += 1
     c.append(cnt)
 
-print('\n'.join(map(str, c)))
+print("\n".join(map(str, c)))
