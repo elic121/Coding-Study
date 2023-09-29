@@ -1,2 +1,2 @@
-# Baekjoon
-Baekjoon practice
+# Let's go!!! :fire
+Coding practice
