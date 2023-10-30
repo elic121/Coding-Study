@@ -1,4 +1,3 @@
-
 def sol1():
     for _ in range(N):
         max_num = 0
@@ -15,6 +14,7 @@ def sol1():
 
         arr[max_idx] -= 1
         arr[min_idx] += 1
+
 
 if __name__ == "__main__":
     for tc in range(1, 11):

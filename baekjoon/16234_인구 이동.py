@@ -1,6 +1,7 @@
 # https://www.acmicpc.net/problem/16234
 from sys import stdin
 from collections import deque
+
 s = stdin.readline
 
 N, L, R = map(int, s().split())
@@ -14,7 +15,6 @@ dy = [0, 0, 1, -1]
 
 
 def bfs(i, j):
-
     d = deque()
     d.append((i, j))
 
@@ -25,13 +25,13 @@ def bfs(i, j):
     while d:
         x, y = d.popleft()
         for X, Y in zip(dx, dy):
-            nx, ny = x+X, y+Y
+            nx, ny = x + X, y + Y
             if (nx < 0 or nx >= N) or (ny < 0 or ny >= N):
                 continue
             if T[nx][ny] == 1:
                 continue
 
-            val = abs(arr[nx][ny]-arr[x][y])
+            val = abs(arr[nx][ny] - arr[x][y])
             if val < L or R < val:
                 continue
 
@@ -40,7 +40,7 @@ def bfs(i, j):
             d.append((nx, ny))
             tmp.append((nx, ny))
 
-    V = sum(VAL)//len(VAL)
+    V = sum(VAL) // len(VAL)
     for x, y in tmp:
         arr[x][y] = V
 
@@ -56,7 +56,7 @@ while True:
             cnt += 1
             bfs(i, j)
 
-    if cnt == N*N:
+    if cnt == N * N:
         break
     COUNT += 1
 

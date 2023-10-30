@@ -49,16 +49,16 @@ def bfs(i, j):
 def delete(exp):
     for val in exp:
         for i, j in val:
-            arr[i][j] = '.'
+            arr[i][j] = "."
 
 
 def clean():
     for c in range(6):
         stack = []
         for r in range(11, -1, -1):
-            if arr[r][c] != '.':
+            if arr[r][c] != ".":
                 stack.append(arr[r][c])
-                arr[r][c] = '.'
+                arr[r][c] = "."
         for r in range(11, 11 - len(stack), -1):
             arr[r][c] = stack[11 - r]
 
@@ -70,7 +70,7 @@ def explore():
         for j in range(6):
             if visited[i][j]:
                 continue
-            if arr[i][j] == '.':
+            if arr[i][j] == ".":
                 continue
             visited[i][j] = 1
             ex = bfs(i, j)

@@ -4,35 +4,42 @@ from collections import deque
 dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
 
-def find(parent,node):
+
+def find(parent, node):
     if node == parent[node]:
         return node
-    return find(parent,parent[node])
-def union(parent,a,b):
-    a = find(parent,a)
-    b = find(parent,b)
+    return find(parent, parent[node])
+
+
+def union(parent, a, b):
+    a = find(parent, a)
+    b = find(parent, b)
     if a > b:
         parent[b] = a
     else:
         parent[a] = b
+
+
 def kruscal(adj):
     T = 0
-    parent = [i for i in range(CNT-2)]
+    parent = [i for i in range(CNT - 2)]
     edge = []
-    for i in range(CNT-2):
-        for j in range(i+1,CNT-2):
+    for i in range(CNT - 2):
+        for j in range(i + 1, CNT - 2):
             if adj[i][j] != 10:
-                edge.append((adj[i][j],i,j))
+                edge.append((adj[i][j], i, j))
 
     edge.sort()
 
-    for cost,a,b in edge:
-        if find(parent,a) == find(parent,b):
+    for cost, a, b in edge:
+        if find(parent, a) == find(parent, b):
             continue
-        union(parent,a,b)
+        union(parent, a, b)
         T += cost
 
     return T
+
+
 def findAdj(idx):
     tmp = [10 for _ in range(CNT - 2)]
     for i in range(N):
@@ -50,12 +57,13 @@ def findAdj(idx):
                         val = arr[nx][ny]
                         if val <= idx:
                             break
-                        if s-1 < 2:
+                        if s - 1 < 2:
                             break
-                        if s-1 < tmp[val-2]:
-                            tmp[val-2] = s-1
+                        if s - 1 < tmp[val - 2]:
+                            tmp[val - 2] = s - 1
                             break
     return tmp
+
 
 def bfs(sx, sy):
     global CNT
@@ -79,6 +87,7 @@ def bfs(sx, sy):
             d.append((nx, ny))
     CNT += 1
 
+
 def is_connected(adj):
     L = len(adj)
     visited = [0 for _ in range(L)]
@@ -93,7 +102,8 @@ def is_connected(adj):
     dfs(0)
     return all(visited)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     N, M = map(int, input().split())
     CNT = 2
     arr = []
@@ -113,8 +123,8 @@ if __name__ == '__main__':
         adj.append(res)
 
     for i in range(len(adj)):
-        for j in range(i+1):
-            if i==j:
+        for j in range(i + 1):
+            if i == j:
                 continue
             adj[i][j] = adj[j][i]
 
@@ -123,4 +133,4 @@ if __name__ == '__main__':
         exit()
 
     ans = kruscal(adj)
-    print([-1,ans][ans!=0])
+    print([-1, ans][ans != 0])

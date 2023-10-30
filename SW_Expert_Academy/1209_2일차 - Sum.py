@@ -2,8 +2,9 @@ def sum_row():
     M = 0
     for r in range(100):
         s = sum(arr[r])
-        M = max(M,s)
+        M = max(M, s)
     return M
+
 
 def sum_col():
     M = 0
@@ -11,22 +12,24 @@ def sum_col():
         s = 0
         for r in range(100):
             s += arr[r][c]
-        M = max(s,M)
+        M = max(s, M)
 
     return M
+
 
 def sum_diagonal():
     M = 0
     s = 0
     for a in range(100):
         s += arr[a][a]
-    M = max(M,s)
+    M = max(M, s)
     s = 0
-    for a in range(99,-1,-1):
-        s += arr[a-99][a]
-    M = max(M,s)
+    for a in range(99, -1, -1):
+        s += arr[a - 99][a]
+    M = max(M, s)
 
     return M
+
 
 if __name__ == "__main__":
     for tc in range(1, 11):
@@ -40,4 +43,4 @@ if __name__ == "__main__":
         sol2 = sum_col()
         sol3 = sum_diagonal()
 
-        print(f"#{tc}",max([sol1,sol2,sol3]))
+        print(f"#{tc}", max([sol1, sol2, sol3]))

@@ -40,7 +40,7 @@ def iteration():
         for j in range(N // 2 - i, N // 2 + i + 1):
             cnt += arr[i][j]
     for i in range(N // 2 + 1, N):
-        for j in range((i - N//2), N - (i - N//2)):
+        for j in range((i - N // 2), N - (i - N // 2)):
             cnt += arr[i][j]
     return cnt
 

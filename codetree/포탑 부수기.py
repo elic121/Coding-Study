@@ -7,6 +7,7 @@ dy = [1, 0, -1, 0]
 mx = [-1, -1, -1, 0, 0, 1, 1, 1]
 my = [-1, 0, 1, -1, 1, -1, 0, 1]
 
+
 def check():
     cnt = 0
     for i in range(N):
@@ -31,6 +32,7 @@ def picks():
     tmp.sort(key=lambda o: (o[0], -recent[o[1]][o[2]], -(o[1] + o[2]), -o[2]))
     return tmp[0]
 
+
 def picka():
     tmp = []
     for i in range(N):
@@ -43,11 +45,12 @@ def picka():
     tmp.sort(key=lambda o: (-o[0], recent[o[1]][o[2]], (o[1] + o[2]), o[2]))
     return tmp[0]
 
+
 def bfs(sx, sy, ax, ay):
     visited = [[0 for _ in range(M)] for _ in range(N)]
     prev_node = [[None for _ in range(M)] for _ in range(N)]
     d = deque()
-    d.append((sx,sy))
+    d.append((sx, sy))
     visited[sx][sy] = 1
 
     while d:
@@ -55,7 +58,7 @@ def bfs(sx, sy, ax, ay):
 
         if x == ax and y == ay:
             path = []
-            tmp = (x,y)
+            tmp = (x, y)
             while tmp is not None:
                 path.append(tmp)
                 tmp = prev_node[tmp[0]][tmp[1]]
@@ -69,7 +72,7 @@ def bfs(sx, sy, ax, ay):
                 continue
             visited[nx][ny] = 1
             prev_node[nx][ny] = (x, y)
-            d.append((nx,ny))
+            d.append((nx, ny))
 
     return []
 
@@ -79,6 +82,7 @@ def broken():
         for j in range(M):
             if arr[i][j] < 0:
                 arr[i][j] = 0
+
 
 def repair():
     for i in range(N):
@@ -117,14 +121,12 @@ if __name__ == "__main__":
         direct_attack[sx][sy] = 1
         direct_attack[ax][ay] = 1
 
-
         if path:
-            for idx in range(1,len(path)-1):
+            for idx in range(1, len(path) - 1):
                 x, y = path[idx]
                 arr[x][y] -= damage
                 direct_attack[x][y] = 1
             arr[ax][ay] -= arr[sx][sy]
-
 
         else:
             for X, Y in zip(mx, my):
@@ -137,7 +139,6 @@ if __name__ == "__main__":
                 arr[nx][ny] -= damage
                 direct_attack[nx][ny] = 1
             arr[ax][ay] -= arr[sx][sy]
-
 
         broken()
         repair()

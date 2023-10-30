@@ -1,5 +1,6 @@
 # https://www.acmicpc.net/problem/15683
 from sys import stdin
+
 s = stdin.readline
 cctv = {}
 
@@ -10,11 +11,13 @@ cctv = {}
 wall = [[0 for _ in range(M)] for _ in range(N)]
 
 # x,y = y, -x
-d = {1: [(0, 1)],
-     2: [(0, 1), (0, -1)],
-     3: [(-1, 0), (0, 1)],
-     4: [(0, -1), (-1, 0), (0, 1)],
-     5: [(0, -1), (-1, 0), (0, 1), (1, 0)]}
+d = {
+    1: [(0, 1)],
+    2: [(0, 1), (0, -1)],
+    3: [(-1, 0), (0, 1)],
+    4: [(0, -1), (-1, 0), (0, 1)],
+    5: [(0, -1), (-1, 0), (0, 1), (1, 0)],
+}
 
 C = [[0 for _ in range(M)] for _ in range(N)]
 cctv_cnt = 0
@@ -40,37 +43,38 @@ def check(lst):
                 continue
             if wall[i][j] == 1:
                 continue
-            if lst[i][j] == '#':
+            if lst[i][j] == "#":
                 continue
             if lst[i][j] == 0:
                 cnt += 1
 
     return cnt
 
+
 def CCTV(lst):
     global cctv, N, M, wall, MIN
     L = [[0 for _ in range(M)] for _ in range(N)]
-    idx = 0 
+    idx = 0
     for key, val in cctv.items():
         D = lst[idx]
         idx += 1
-        x,y = key
+        x, y = key
         L[x][y] = val
-        for X,Y in d[val]:
+        for X, Y in d[val]:
             tx, ty = X, Y
             for _ in range(D):
                 if val == 5:
                     break
                 tx, ty = ty, -tx
-            for i in range(1,max(N,M)):
-                nx, ny = x+tx*i, y+ty*i
-                if (nx<0 or nx>=N) or (ny<0 or ny>=M):
+            for i in range(1, max(N, M)):
+                nx, ny = x + tx * i, y + ty * i
+                if (nx < 0 or nx >= N) or (ny < 0 or ny >= M):
                     break
                 if wall[nx][ny] == 1:
                     break
-                if L[nx][ny] !='#' and L[nx][ny] >= 1:
+                if L[nx][ny] != "#" and L[nx][ny] >= 1:
                     continue
-                L[nx][ny] = '#'
+                L[nx][ny] = "#"
 
     res = check(L)
     if res < MIN:
@@ -78,6 +82,7 @@ def CCTV(lst):
         ARR = L
 
     return
+
 
 def backtracking(tmp):
     global cctv_cnt
@@ -90,6 +95,7 @@ def backtracking(tmp):
         tmp.append(i)
         backtracking(tmp)
         tmp.pop()
+
 
 backtracking([])
 print(MIN)

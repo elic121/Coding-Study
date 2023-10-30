@@ -20,7 +20,7 @@ def change_head_tail(d: deque):
     return deque(q for q in d)
 
 
-def line(round:int):
+def line(round: int):
     share, remind = divmod(round, n)
     DIR = (2 + share) % 4
     if DIR == 2:
@@ -28,7 +28,7 @@ def line(round:int):
     if DIR == 3:
         return n - 1, remind, DIR
     if DIR == 0:
-        return n - remind, n , DIR
+        return n - remind, n, DIR
     if DIR == 1:
         return 0, n - remind, DIR
 
@@ -58,31 +58,38 @@ def find_attack_pos(round):
                     if VAL == 2:
                         head_idx = team_val[team_idx].index(1)
                         if idx < head_idx:
-                            for i in range(idx+1,head_idx+1):
-                                if team_val[team_idx][i] == 3 or team_val[team_idx][i] == 4:
-                                    return n - (head_idx-idx) + 1, team_idx
+                            for i in range(idx + 1, head_idx + 1):
+                                if (
+                                    team_val[team_idx][i] == 3
+                                    or team_val[team_idx][i] == 4
+                                ):
+                                    return n - (head_idx - idx) + 1, team_idx
                                 if team_val[team_idx][i] == 1:
-                                    return head_idx-idx+1, team_idx
+                                    return head_idx - idx + 1, team_idx
                         if idx > head_idx:
-                            for i in range(head_idx+1,idx+1):
-                                if team_val[team_idx][i] == 3 or team_val[team_idx][i] == 4:
+                            for i in range(head_idx + 1, idx + 1):
+                                if (
+                                    team_val[team_idx][i] == 3
+                                    or team_val[team_idx][i] == 4
+                                ):
                                     return n - (idx - head_idx) + 1, team_idx
                                 if team_val[team_idx][i] == 1:
                                     return (idx - head_idx) + 1, team_idx
 
-
     return 0, 0
 
-def check_move_direction(d:deque):
+
+def check_move_direction(d: deque):
     head_idx = 0
     for i in range(len(d)):
         if d[i] == 1:
             head_idx = i
             break
-    if d[(head_idx-1)%len(d)] == 2:
+    if d[(head_idx - 1) % len(d)] == 2:
         return 1
     else:
         return -1
+
 
 def condition(x, y):
     if (x < 0 or x >= n) or (y < 0 or y >= n):
@@ -114,7 +121,7 @@ def dfs(i, j, visited):
     return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n, m, k = map(int, input().split())
     arr = []
     score = 0
@@ -160,7 +167,7 @@ if __name__ == '__main__':
         # print(team)
         # 머리사람을 따라서 한 칸 이동
         # print(team_val)
-        for key,val in team_val.items():
+        for key, val in team_val.items():
             direction = check_move_direction(val)
             team_val[key].rotate(direction)
 

@@ -1,9 +1,11 @@
 # https://www.acmicpc.net/problem/20056
 from sys import stdin
+
 s = stdin.readline
 
+
 def condition1(x, y, direction, speed):
-    nx, ny = (x + speed*dx[direction]) % N, (y + speed*dy[direction]) % N
+    nx, ny = (x + speed * dx[direction]) % N, (y + speed * dy[direction]) % N
     return nx, ny
 
 
@@ -20,11 +22,11 @@ def condition2(lst: list or tuple):
         else:
             odd += 1
     if even == 0 or odd == 0:
-        dire = 'even'
+        dire = "even"
     else:
-        dire = 'odd'
+        dire = "odd"
 
-    return mass//5, velo//len(lst), dire
+    return mass // 5, velo // len(lst), dire
 
 
 N, M, K = map(int, s().split())
@@ -35,7 +37,7 @@ dy = [0, 1, 1, 1, 0, -1, -1, -1]
 visited = [[[] for _ in range(N)] for _ in range(N)]
 for _ in range(M):
     r, c, m, S, d = map(int, s().split())
-    visited[r-1][c-1].append((m, S, d))
+    visited[r - 1][c - 1].append((m, S, d))
 
 for _ in range(K):
     Tvisited = [[[] for _ in range(N)] for _ in range(N)]
@@ -62,9 +64,9 @@ for _ in range(K):
             M, V, D = condition2(Tvisited[i][j])
             if M == 0:
                 continue
-            for k in range((D == 'odd'), 8, 2):
+            for k in range((D == "odd"), 8, 2):
                 tmpvisited[i][j].append((M, V, k))
-    
+
     visited = tmpvisited
 
 SUM = 0

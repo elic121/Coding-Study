@@ -1,5 +1,6 @@
 # https://www.acmicpc.net/problem/21611
 from sys import stdin
+
 s = stdin.readline
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
@@ -25,11 +26,12 @@ def p(arr):
 
 
 def ice(x, y, d, s):
-    for i in range(1, s+1):
-        nx, ny = x+dx[d-1]*i, y+dy[d-1]*i
+    for i in range(1, s + 1):
+        nx, ny = x + dx[d - 1] * i, y + dy[d - 1] * i
         if (nx < 0 or nx >= N) or (ny < 0 or ny >= N):
             break
         arr[nx][ny] = 0
+
 
 def explosion(posx, posy):
     ONE, TWO, THR = 0, 0, 0
@@ -44,9 +46,9 @@ def explosion(posx, posy):
     CHANGE = False
 
     while True:
-        IT = 1 + count//2
-        for i in range(1, IT+1):
-            nx, ny = posx + i*DX[direction], posy + i*DY[direction]
+        IT = 1 + count // 2
+        for i in range(1, IT + 1):
+            nx, ny = posx + i * DX[direction], posy + i * DY[direction]
             if ny == -1:
                 END = True
                 break
@@ -88,11 +90,11 @@ def explosion(posx, posy):
         if END:
             break
 
-        posx, posy = posx + IT*DX[direction], posy + IT*DY[direction]
+        posx, posy = posx + IT * DX[direction], posy + IT * DY[direction]
         count += 1
-        direction = (direction+1) % 4
+        direction = (direction + 1) % 4
 
-    if stack and len(stack)>=4:
+    if stack and len(stack) >= 4:
         if stack[-1] == 1:
             ONE += len(stack)
         if stack[-1] == 2:
@@ -105,6 +107,7 @@ def explosion(posx, posy):
 
     return ONE, TWO, THR, CHANGE
 
+
 def refactoring(posx, posy, arr):
     lst = []
     stack = []
@@ -113,13 +116,13 @@ def refactoring(posx, posy, arr):
     END = False
 
     while True:
-        IT = 1 + count//2
-        for i in range(1, IT+1):
-            nx, ny = posx + i*DX[direction], posy + i*DY[direction]
+        IT = 1 + count // 2
+        for i in range(1, IT + 1):
+            nx, ny = posx + i * DX[direction], posy + i * DY[direction]
             if ny == -1:
                 END = True
                 break
-            
+
             val = arr[nx][ny]
 
             if val == 0:
@@ -136,22 +139,23 @@ def refactoring(posx, posy, arr):
 
                 stack.append(val)
 
-            if len(lst) > N*N -1:
+            if len(lst) > N * N - 1:
                 END = True
                 break
 
         if END:
             break
 
-        posx, posy = posx + IT*DX[direction], posy + IT*DY[direction]
+        posx, posy = posx + IT * DX[direction], posy + IT * DY[direction]
         count += 1
-        direction = (direction+1) % 4
-    
+        direction = (direction + 1) % 4
+
     if stack:
         lst.append(len(stack))
         lst.append(stack[-1])
 
     return lst
+
 
 def grouping(posx, posy, arr):
     exam = refactoring(posx, posy, arr)
@@ -164,13 +168,13 @@ def grouping(posx, posy, arr):
 
     C = 0
     while True:
-        IT = 1 + count//2
-        for i in range(1, IT+1):
-            nx, ny = posx + i*DX[direction], posy + i*DY[direction]
+        IT = 1 + count // 2
+        for i in range(1, IT + 1):
+            nx, ny = posx + i * DX[direction], posy + i * DY[direction]
             if ny == -1:
                 END = True
                 break
-            
+
             if C >= len(exam):
                 END = True
                 break
@@ -181,13 +185,14 @@ def grouping(posx, posy, arr):
         if END:
             break
 
-        posx, posy = posx + IT*DX[direction], posy + IT*DY[direction]
+        posx, posy = posx + IT * DX[direction], posy + IT * DY[direction]
         count += 1
-        direction = (direction+1) % 4
+        direction = (direction + 1) % 4
 
     return tmp
 
-posx, posy = N//2, N//2
+
+posx, posy = N // 2, N // 2
 one, two, thr = 0, 0, 0
 for idx in range(M):
     ice(posx, posy, DS[idx][0], DS[idx][1])
@@ -202,7 +207,7 @@ for idx in range(M):
 
     arr = grouping(posx, posy, arr)
 
-    if idx == M-1:
+    if idx == M - 1:
         break
 
-print(one+2*two+3*thr)
+print(one + 2 * two + 3 * thr)

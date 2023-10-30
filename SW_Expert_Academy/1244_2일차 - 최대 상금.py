@@ -1,6 +1,6 @@
 def backtracking(n, cnt):
     global M
-    ans = int(''.join(num))
+    ans = int("".join(num))
     if ans in visited[cnt]:
         return
     else:
@@ -25,7 +25,7 @@ if __name__ == "__main__":
         num, N = map(int, input().split())
         num = list(str(num).strip())
         L = len(num)
-        visited = {i: list() for i in range(N+1)}
+        visited = {i: list() for i in range(N + 1)}
         backtracking(N, 0)
 
         print(f"#{tc} {max(visited[N])}")

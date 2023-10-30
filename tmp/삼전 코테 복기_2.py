@@ -21,7 +21,7 @@ def move_person(id):
     px, py = person_dict[id]
     cx, cy = c_pos
 
-    pivot = distance(px,py,cx,cy)
+    pivot = distance(px, py, cx, cy)
     dist_list = []
     for X, Y in zip(dx, dy):
         nx, ny = px + X, py + Y
@@ -85,7 +85,7 @@ def move_cow():
     return lx, ly
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     t = int(input())
     for cs in range(1, t + 1):
         N, M, P, S, D = map(int, input().split())

@@ -31,6 +31,7 @@ def condition(x, y):
         return False
     return True
 
+
 dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
 
@@ -43,7 +44,7 @@ def bfs():
     while d:
         x, y, cnt = d.popleft()
 
-        if x == H-1 and y == W-1:
+        if x == H - 1 and y == W - 1:
             return visited[x][y][cnt]
 
         for X, Y in zip(dx, dy):
@@ -63,17 +64,17 @@ def bfs():
                 nx, ny = x + sx, y + sy
                 if not condition(nx, ny):
                     continue
-                if visited[nx][ny][cnt-1] >= 1:
+                if visited[nx][ny][cnt - 1] >= 1:
                     continue
                 if arr[nx][ny] == 1:
                     continue
-                visited[nx][ny][cnt-1] = visited[x][y][cnt] + 1
-                d.append((nx, ny, cnt-1))
+                visited[nx][ny][cnt - 1] = visited[x][y][cnt] + 1
+                d.append((nx, ny, cnt - 1))
 
     return -1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     K, H, W, arr, h_move = init()
 
     print(bfs())

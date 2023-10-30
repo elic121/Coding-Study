@@ -86,16 +86,18 @@ def find_other_island(i, j, val):
                 visited[nx][ny] = dist + 1
                 continue
             visited[nx][ny] = visited[x][y] + 1
-            d.append((nx,ny))
+            d.append((nx, ny))
+
 
 def find_minimum():
     cnt = 100_000_000_9
     for key, val in island.items():
         for k in val.values():
-            cnt = min(cnt,k)
+            cnt = min(cnt, k)
     print(cnt)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     N = int(s())
     arr = []
     island = {}
@@ -104,14 +106,14 @@ if __name__ == '__main__':
         arr.append(lst)
 
     island_cnt = seperate()
-    for c in range(island_cnt-3):
+    for c in range(island_cnt - 3):
         island[c + 2] = {}
-        for r in range(c+1+2,island_cnt):
-            island[c+2][r] = 100_000_000_9
+        for r in range(c + 1 + 2, island_cnt):
+            island[c + 2][r] = 100_000_000_9
 
     for i in range(N):
         for j in range(N):
             if 2 <= arr[i][j] <= 2 + island_cnt - 2:
-                find_other_island(i,j,arr[i][j])
+                find_other_island(i, j, arr[i][j])
 
     find_minimum()

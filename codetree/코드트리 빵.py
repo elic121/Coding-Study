@@ -76,7 +76,7 @@ def find_nearest(x, y):
             d.append((nx, ny))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     N, M = map(int, input().split())
     arr = []
     basecamp = [[0 for _ in range(N)] for _ in range(N)]

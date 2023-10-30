@@ -1,6 +1,7 @@
 # https://www.acmicpc.net/problem/16236
 from sys import stdin
 from collections import deque
+
 s = stdin.readline
 N = int(s())
 arr = []
@@ -36,15 +37,15 @@ def bfs(i, j, sc):
     while d:
         fx, fy = d.popleft()
         for X, Y in zip(dx, dy):
-            nx, ny = fx+X, fy+Y
-            if (nx<0 or nx>=N) or (ny<0 or ny>=N):
+            nx, ny = fx + X, fy + Y
+            if (nx < 0 or nx >= N) or (ny < 0 or ny >= N):
                 continue
             if tmp[nx][ny] >= 1:
                 continue
             if arr[nx][ny] > sc:
                 continue
             tmp[nx][ny] = tmp[fx][fy] + 1
-            d.append((nx,ny))
+            d.append((nx, ny))
 
     m = {}
     for k in fish.keys():
@@ -57,22 +58,23 @@ def bfs(i, j, sc):
             D = tmp[tx][ty]
             if D >= 1:
                 if D in m:
-                    m[D].append((tx,ty))
+                    m[D].append((tx, ty))
                 else:
-                    m[D] = [(tx,ty)]
-    
+                    m[D] = [(tx, ty)]
+
     try:
         MINKEY = min(m.keys())
-        where = sorted(m[MINKEY],key = lambda x:(x[0],x[1]))[0]
+        where = sorted(m[MINKEY], key=lambda x: (x[0], x[1]))[0]
         return where[0], where[1], MINKEY
-    
+
     except:
         return None, None, None
+
 
 tmp = 0
 time = 0
 while True:
-    nx, ny, T = bfs(sx,sy,scale)
+    nx, ny, T = bfs(sx, sy, scale)
     if nx == None:
         break
     time += T

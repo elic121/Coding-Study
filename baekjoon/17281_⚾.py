@@ -1,6 +1,7 @@
 # https://www.acmicpc.net/problem/17281
 from sys import stdin
 from itertools import permutations
+
 s = stdin.readline
 
 N = int(s())
@@ -26,7 +27,7 @@ for val in permutations(range(1, 9), 8):
 
         while True:
             res = tmp[next_runner]
-            next_runner = (next_runner+1) % 9
+            next_runner = (next_runner + 1) % 9
 
             if res == 0:
                 zero_count += 1

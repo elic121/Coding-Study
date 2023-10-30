@@ -1,6 +1,7 @@
 # https://www.acmicpc.net/problem/23288
 from sys import stdin
 from collections import deque
+
 s = stdin.readline
 N, M, K = map(int, s().split())
 arr = []
@@ -18,53 +19,79 @@ dice = [1, 5, 6, 2, 3, 4]
 
 
 def east():
-    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = \
-        dice[5], dice[1], dice[4], dice[3], dice[0], dice[2]
+    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = (
+        dice[5],
+        dice[1],
+        dice[4],
+        dice[3],
+        dice[0],
+        dice[2],
+    )
 
 
 def west():
-    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = \
-        dice[4], dice[1], dice[5], dice[3], dice[2], dice[0]
+    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = (
+        dice[4],
+        dice[1],
+        dice[5],
+        dice[3],
+        dice[2],
+        dice[0],
+    )
 
 
 def north():
-    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = \
-        dice[1], dice[2], dice[3], dice[0], dice[4], dice[5]
+    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = (
+        dice[1],
+        dice[2],
+        dice[3],
+        dice[0],
+        dice[4],
+        dice[5],
+    )
 
 
 def south():
-    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = \
-        dice[3], dice[0], dice[1], dice[2], dice[4], dice[5]
+    dice[0], dice[1], dice[2], dice[3], dice[4], dice[5] = (
+        dice[3],
+        dice[0],
+        dice[1],
+        dice[2],
+        dice[4],
+        dice[5],
+    )
 
-def bfs(B,i,j):
+
+def bfs(B, i, j):
     tmp = [[0 for _ in range(M)] for _ in range(N)]
     tmp[i][j] = 1
     d = deque()
-    d.append((i,j))
+    d.append((i, j))
     C = 1
     while d:
-        x,y = d.popleft()
-        for X,Y in zip(dx,dy):
-            nx,ny = x+X,y+Y
-            if (nx<0 or nx>=N) or (ny<0 or ny>=M):
+        x, y = d.popleft()
+        for X, Y in zip(dx, dy):
+            nx, ny = x + X, y + Y
+            if (nx < 0 or nx >= N) or (ny < 0 or ny >= M):
                 continue
             if arr[nx][ny] != B:
                 continue
             if tmp[nx][ny] == 1:
                 continue
             tmp[nx][ny] = 1
-            d.append((nx,ny))
+            d.append((nx, ny))
             C += 1
-    
+
     return C
+
 
 score = 0
 for _ in range(K):
     nx, ny = px + dx[d], py + dy[d]
     if (nx < 0 or nx >= N) or (ny < 0 or ny >= M):
-        d = (d+2) % 4
+        d = (d + 2) % 4
         nx, ny = px + dx[d], py + dy[d]
-    
+
     px, py = nx, ny
     B = arr[px][py]
 
@@ -80,13 +107,13 @@ for _ in range(K):
     A = dice[2]
 
     if A > B:
-        d = (d+1) % 4
+        d = (d + 1) % 4
     elif A < B:
-        d = (d-1) % 4
+        d = (d - 1) % 4
     elif A == B:
         pass
-    
-    S = bfs(B,px,py)
-    score += S*B
+
+    S = bfs(B, px, py)
+    score += S * B
 
 print(score)

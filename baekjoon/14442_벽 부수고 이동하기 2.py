@@ -15,7 +15,7 @@ def condition(x, y):
 
 
 def bfs():
-    visited = [[[0]*(K + 1) for _ in range(M)] for _ in range(N)]
+    visited = [[[0] * (K + 1) for _ in range(M)] for _ in range(N)]
     d = deque()
     d.append((0, 0, K))
     visited[0][0][K] = 1
@@ -34,7 +34,7 @@ def bfs():
                 d.append((nx, ny, cnt))
                 visited[nx][ny][cnt] = visited[x][y][cnt] + 1
             if arr[nx][ny] == 1 and cnt >= 1:
-                if visited[nx][ny][cnt-1] >= 1:
+                if visited[nx][ny][cnt - 1] >= 1:
                     continue
                 d.append((nx, ny, cnt - 1))
                 visited[nx][ny][cnt - 1] = visited[x][y][cnt] + 1

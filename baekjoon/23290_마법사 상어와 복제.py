@@ -1,27 +1,31 @@
 # https://www.acmicpc.net/problem/23290
 from sys import stdin
+
 s = stdin.readline
-M, S = map(int,s().split())
-dx = [0,-1,-1,-1,0,1,1,1]
-dy = [-1,-1,0,1,1,1,0,-1]
+M, S = map(int, s().split())
+dx = [0, -1, -1, -1, 0, 1, 1, 1]
+dy = [-1, -1, 0, 1, 1, 1, 0, -1]
 arr = [[[] for _ in range(4)] for _ in range(4)]
 smell = [[0 for _ in range(4)] for _ in range(4)]
 dup = [[[] for _ in range(4)] for _ in range(4)]
 for _ in range(M):
-    fx,fy,d = map(int,s().split())
-    arr[fx-1][fy-1].append(d)
-sx, sy = map(int,s().split())
-sx, sy = sx-1, sy-1
+    fx, fy, d = map(int, s().split())
+    arr[fx - 1][fy - 1].append(d)
+sx, sy = map(int, s().split())
+sx, sy = sx - 1, sy - 1
+
 
 def magic():
-    global arr,dup
+    global arr, dup
     for i in range(4):
         for j in range(4):
             if arr[i][j]:
                 for D in arr[i][j]:
                     dup[i][j].append(D)
+
+
 def moveFish():
-    global arr,sx,sy
+    global arr, sx, sy
     tmp = [[[] for _ in range(4)] for _ in range(4)]
     for i in range(4):
         for j in range(4):
@@ -29,15 +33,15 @@ def moveFish():
             #     continue
             if arr[i][j]:
                 for D in arr[i][j]:
-                    idx = D-1
+                    idx = D - 1
                     check = False
                     cnt = 0
                     while True:
                         cnt += 1
                         if cnt == 9:
                             break
-                        nx, ny = i+dx[idx], j+dy[idx]
-                        if (nx<0 or nx>=4) or (ny<0 or ny>=4):
+                        nx, ny = i + dx[idx], j + dy[idx]
+                        if (nx < 0 or nx >= 4) or (ny < 0 or ny >= 4):
                             idx = (idx - 1) % 8
                             continue
                         if smell[nx][ny] > 0:
@@ -46,7 +50,7 @@ def moveFish():
                         if nx == sx and ny == sy:
                             idx = (idx - 1) % 8
                             continue
-                        tmp[nx][ny].append(idx+1)
+                        tmp[nx][ny].append(idx + 1)
                         check = True
                         break
 
@@ -55,19 +59,22 @@ def moveFish():
 
     arr = tmp
 
+
 max_food = {}
 Max = -1
 SX = [-1, 0, 1, 0]
 SY = [0, -1, 0, 1]
+
+
 def backtracking(tmp):
     global max_food, SX, SY, Max, sx, sy, arr
     if len(tmp) == 3:
-        x,y = sx, sy
+        x, y = sx, sy
         food = 0
         cache = [[0 for _ in range(4)] for _ in range(4)]
         for idx in tmp:
-            nx, ny = x+SX[idx-1], y+SY[idx-1]
-            if (nx<0 or nx>=4) or (ny<0 or ny>=4):
+            nx, ny = x + SX[idx - 1], y + SY[idx - 1]
+            if (nx < 0 or nx >= 4) or (ny < 0 or ny >= 4):
                 return
             if cache[nx][ny] == 1:
                 pass
@@ -85,12 +92,15 @@ def backtracking(tmp):
 
         return
 
-    for i in range(1,5):
+    for i in range(1, 5):
         tmp.append(i)
         backtracking(tmp)
         tmp.pop()
 
+
 die = [[0 for _ in range(4)] for _ in range(4)]
+
+
 def moveShark():
     global max_food, SX, SY, sx, sy, die, Max
     backtracking([])
@@ -101,13 +111,14 @@ def moveShark():
 
     x, y = sx, sy
     for idx in move:
-        nx, ny = x+SX[idx-1], y+SY[idx-1]
+        nx, ny = x + SX[idx - 1], y + SY[idx - 1]
         if arr[nx][ny]:
             smell[nx][ny] = 2
             die[nx][ny] = 1
             arr[nx][ny].clear()
-        x,y = nx, ny
+        x, y = nx, ny
     sx, sy = x, y
+
 
 def checkSmell():
     global smell, die
@@ -119,6 +130,7 @@ def checkSmell():
                 smell[i][j] -= 1
     die = [[0 for _ in range(4)] for _ in range(4)]
 
+
 def duplication():
     global sx, sy, arr, dup
     for row in range(4):
@@ -127,6 +139,7 @@ def duplication():
                 for D in dup[row][col]:
                     arr[row][col].append(D)
     dup = [[[] for _ in range(4)] for _ in range(4)]
+
 
 for cs in range(S):
     magic()

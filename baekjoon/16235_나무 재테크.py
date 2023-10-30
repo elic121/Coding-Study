@@ -12,13 +12,13 @@ arr = [[5 for _ in range(N)] for _ in range(N)]
 tree = [[deque() for _ in range(N)] for _ in range(N)]
 for _ in range(M):
     x, y, z = map(int, s().split())
-    if not tree[x-1][y-1]:
-        tree[x-1][y-1].append(z)
+    if not tree[x - 1][y - 1]:
+        tree[x - 1][y - 1].append(z)
     else:
-        if tree[x-1][y-1][-1] <= z:
-            tree[x-1][y-1].append(z)
+        if tree[x - 1][y - 1][-1] <= z:
+            tree[x - 1][y - 1].append(z)
         else:
-            tree[x-1][y-1].appendleft(z)
+            tree[x - 1][y - 1].appendleft(z)
 
 dx = [-1, -1, -1, 0, 0, 1, 1, 1]
 dy = [-1, 0, 1, -1, 1, -1, 0, 1]
@@ -42,8 +42,8 @@ def springAndSummer():
                     cnt += 1
                 else:
                     break
-            
-            for _ in range(len(key)-cnt):
+
+            for _ in range(len(key) - cnt):
                 dieLst[i][j] += tree[i][j].pop() // 2
 
     for i in range(N):
@@ -62,7 +62,7 @@ def autumn():
                 if val % 5 != 0:
                     continue
                 for X, Y in zip(dx, dy):
-                    nx, ny = i+X, j+Y
+                    nx, ny = i + X, j + Y
                     if (nx < 0 or nx >= N) or (ny < 0 or ny >= N):
                         continue
                     tree[nx][ny].appendleft(1)
