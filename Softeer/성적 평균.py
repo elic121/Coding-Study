@@ -13,3 +13,4 @@ if __name__ == "__main__":
         a, b = map(int, s().split())
         val = (i_sum[b]-i_sum[a-1])/(b-a+1)
         print(f"{val:.2f}")
+# test
