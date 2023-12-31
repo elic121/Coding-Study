@@ -1,5 +1,3 @@
-package SW_Expert_Academy.java;
-
 import java.io.*;
 import java.util.*;
 
