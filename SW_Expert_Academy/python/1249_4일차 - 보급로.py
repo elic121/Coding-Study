@@ -7,8 +7,8 @@ dy = [1, 0, -1, 0]
 def bfs():
     d = deque()
     d.append((0, 0))
-    dist = [[float('inf')] * N for _ in range(N)]
-    dist[0][0] = 0
+    D = [[float('inf')] * N for _ in range(N)]
+    D[0][0] = 0
 
     while d:
         x, y = d.popleft()
@@ -18,11 +18,11 @@ def bfs():
                 continue
             val = arr[nx][ny]
 
-            if dist[nx][ny] > dist[x][y] + val:
+            if D[nx][ny] > D[x][y] + val:
                 d.append((nx, ny))
-                dist[nx][ny] = dist[x][y] + val
+                D[nx][ny] = D[x][y] + val
 
-    return dist[N - 1][N - 1]
+    return D[N - 1][N - 1]
 
 
 if __name__ == "__main__":
@@ -35,3 +35,21 @@ if __name__ == "__main__":
             arr.append(lst)
         cnt = bfs()
         print(f"#{tc} {cnt}")
+    
+
+# from collections import deque as Q
+# X,Y=[0,1,0,-1],[1,0,-1,0]
+# def B():
+#     d=Q([(0,0)]);D=[[2001]*N for _ in r(N)];D[0][0]=0
+#     while d:
+#         x,y=d.popleft()
+#         for i,j in zip(X,Y):
+#             O,P=x+i,y+j
+#             if 0<=O<N and 0<=P<N:
+#                 V=D[x][y]+A[O][P]
+#                 if D[O][P]>V:D[O][P]=V;d.append((O,P))
+#     return D[N-1][N-1]
+# I,p,r=int,input,range
+# for tc in r(I(p())):
+#     N=I(p());A=[list(map(I,list(p()))) for _ in r(N)]
+#     print(f"#{tc+1}",B())
