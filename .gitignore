@@ -1,3 +1,11 @@
 *.pyc
 
 ssafy_coding_test/
+
+tmp/
+
+.idea/
+
+.vscode/
+
+.github/
