@@ -1,3 +1,9 @@
 .idea/
 
 *.pyc
+
+.github/
+
+.vscode/
+
+.gitignore
