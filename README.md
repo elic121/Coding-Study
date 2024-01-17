@@ -1,10 +1,10 @@
 ## Coding practice
-[Baekjoon] https://www.acmicpc.net  
+[Baekjoon](https://www.acmicpc.net)
 
-[Programmers] https://programmers.co.kr  
+[Programmers](https://programmers.co.kr)  
 
-[Softeer] https://softeer.ai/index  
+[Softeer](https://softeer.ai/index)  
 
-[SW Expert Academy] https://swexpertacademy.com  
+[SW Expert Academy](https://swexpertacademy.com)  
 
-[Codetree] https://www.codetree.ai
+[Codetree](https://www.codetree.ai)
