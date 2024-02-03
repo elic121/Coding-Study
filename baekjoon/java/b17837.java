@@ -22,6 +22,7 @@ public class b17837 {
   static ArrayList<Piece>[][] chess;
   static Piece[] summary;
 
+  @SuppressWarnings("unchecked")
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     st = new StringTokenizer(br.readLine());
