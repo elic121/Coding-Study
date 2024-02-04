@@ -3,9 +3,9 @@ package BookPractice;
 public class BookManagerImpl implements IBookManager {
 
   private static IBookManager instance = new BookManagerImpl();
-  final int MAX_SIZE = 100;
-  int size;
-  Book[] books;
+  private final int MAX_SIZE = 100;
+  private int size;
+  private Book[] books;
 
   public BookManagerImpl() {
     books = new Book[MAX_SIZE];
@@ -100,8 +100,7 @@ public class BookManagerImpl implements IBookManager {
     return (double) getTotalPrice() / (double) size;
   }
 
-  public void sell(String isbn, int queantity)
-    throws ISBNNotFoundException, QuantityException {
+  public void sell(String isbn, int queantity) {
     System.out.printf(
       "***************도서판매:%s %d개***************\n",
       isbn, queantity
@@ -120,7 +119,7 @@ public class BookManagerImpl implements IBookManager {
     throw new ISBNNotFoundException(isbn);
   }
 
-  public void buy(String isbn, int queantity) throws ISBNNotFoundException {
+  public void buy(String isbn, int queantity) {
     System.out.printf(
         "***************도서구매:%s %d개***************\n",
         isbn, queantity

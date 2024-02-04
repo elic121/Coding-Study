@@ -13,6 +13,6 @@ public interface IBookManager {
   void print();
   void print(Book book);
   void print(Book[] books);
-  void sell(String isbn, int queantity) throws ISBNNotFoundException, QuantityException;
-  void buy(String isbn, int queantity) throws ISBNNotFoundException;
+  void sell(String isbn, int queantity);
+  void buy(String isbn, int queantity);
 }
