@@ -1,9 +1,10 @@
+
 /**
- *  실행시간:   132 ms
- *  메모리  :   23,096 kb
+ *  실행시간:   124 ms
+ *  메모리  :   22,648 kb
  */
 
- import java.io.*;
+import java.io.*;
 import java.util.*;
 
 public class b5644 {
@@ -42,13 +43,13 @@ public class b5644 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         T = Integer.parseInt(br.readLine());
         sb = new StringBuilder();
-        
+
         for (int i = 1; i <= T; i++) {
-            
+
             st = new StringTokenizer(br.readLine());
             M = Integer.parseInt(st.nextToken());
             A = Integer.parseInt(st.nextToken());
-            
+
             arr = new int[11][11];
             chargers = new Charger[A + 1];
 
@@ -90,7 +91,9 @@ public class b5644 {
     }
 
     private static void simulate(int index) {
-        for (int i = 0; i <= M; i++) move(i);
+        for (int i = 0; i <= M; i++) {
+            move(i);
+        }
         sb.append("#").append(index).append(" ").append(score).append("\n");
     }
 
@@ -104,32 +107,23 @@ public class b5644 {
         int currentA = arr[PA.x][PA.y];
         int currentB = arr[PB.x][PB.y];
 
-        int[] maxA = new int[A + 1];
-        int[] maxB = new int[A + 1];
-
-        for (int i = 1; i <= A; i++) {
-            if ((currentA & 1 << i) != 0) {
-                maxA[i] = chargers[i].p;
-            }
-
-            if ((currentB & 1 << i) != 0) {
-                maxB[i] = chargers[i].p;
-            }
-        }
-
         int MAX = 0;
 
         for (int i = 1; i <= A; i++) {
             for (int j = 1; j <= A; j++) {
+                int ap = (currentA & 1 << i) != 0 ? 1 : 0;
+                int bp = (currentB & 1 << j) != 0 ? 1 : 0;
+                if (ap == 0 && bp == 0)
+                    continue;
                 if (i == j) {
-                    MAX = Math.max(MAX, maxA[i]);
-                    MAX = Math.max(MAX, maxB[i]);
+                    MAX = Math.max(MAX, chargers[i].p * ap
+                            + chargers[j].p * bp
+                            - chargers[i].p * (ap * bp));
                 } else {
-                    MAX = Math.max(MAX, maxA[i] + maxB[j]);
+                    MAX = Math.max(MAX, chargers[i].p * ap + chargers[j].p * bp);
                 }
             }
         }
-
         score += MAX;
     }
 
