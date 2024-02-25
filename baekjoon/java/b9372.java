@@ -6,7 +6,7 @@ public class b9372 {
   static int T, N, M, cnt;
   static ArrayList<Integer>[] arr;
   static StringTokenizer st;
-
+  @SuppressWarnings("unchecked")
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     T = Integer.parseInt(br.readLine());

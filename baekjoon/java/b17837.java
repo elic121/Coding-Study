@@ -1,20 +1,21 @@
 import java.io.*;
 import java.util.*;
 
-class Piece {
 
-  int x, y, dir, idx;
-
-  Piece(int x, int y, int dir, int idx) {
-    this.x = x;
-    this.y = y;
-    this.dir = dir;
-    this.idx = idx;
-  }
-}
 
 public class b17837 {
 
+  static class Piece {
+
+    int x, y, dir, idx;
+  
+    Piece(int x, int y, int dir, int idx) {
+      this.x = x;
+      this.y = y;
+      this.dir = dir;
+      this.idx = idx;
+    }
+  }
   static int N, K, arr[][];
   static int[] dx = { 0, 0, -1, 1 };
   static int[] dy = { 1, -1, 0, 0 };
