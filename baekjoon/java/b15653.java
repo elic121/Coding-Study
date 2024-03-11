@@ -64,7 +64,12 @@ public class b15653 {
                     continue;
                 }
 
-                if (nr.equals(nb) && !(nr.equals(goal) || nb.equals(goal))) {
+                if (nr.equals(goal)) {
+                    System.out.println(info.cnt + 1);
+                    return;
+                }
+
+                if (nr.equals(nb)) {
                     int p = (r.x < b.x || r.y < b.y) ? 1 : -1;
                     if (p * (dx[i] + dy[i]) > 0) {
                         nr.x -= dx[i];
@@ -77,11 +82,6 @@ public class b15653 {
 
                 if (visited[nr.x][nr.y][nb.x][nb.y]) {
                     continue;
-                }
-
-                if (nr.equals(goal) && !nb.equals(goal)) {
-                    System.out.println(info.cnt + 1);
-                    return;
                 }
 
                 dq.add(new Point[] { nr, nb });

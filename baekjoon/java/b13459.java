@@ -29,7 +29,6 @@ public class b13459 {
 
             if (result == 1) {
                 System.out.println(1);
-                print(n);
                 System.exit(0);
             } else if (result == 2) {
                 perm(depth + 1, n);
