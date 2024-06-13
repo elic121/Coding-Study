@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.*;
 
 public class b2884 {
 
-  public static void main(String[] args) throws NullPointerException {
+  public static void main(String[] args) throws IOException {
     Scanner sc = new Scanner(System.in);
     int iter = sc.nextInt();
     sc.nextLine();
