@@ -35,7 +35,6 @@ public class b22352 {
                     continue;
                 }
 
-                System.out.println(i + " " + j);
                 if (!bfs(i, j)) {
                     isPossible = false;
                     return;
